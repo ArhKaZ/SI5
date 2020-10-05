@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Club_des_fromages.metier
 {
-    class DTO_Fromage
+    class Fromage
     {
-        private int id;
-        private string pays_origine_id;
-        private string nom;
-        private int creation;
-        private string image;
+        protected int id;
+        protected int pays_origine_id;
+        protected string nom;
+        protected int creation;
+        protected string image;
 
-        public DTO_Fromage(int id, string pays_origine_id, string nom, int creation, string image)
+        public Fromage(int id, int pays_origine_id, string nom, int creation, string image)
         {
             this.id = id;
             this.pays_origine_id = pays_origine_id;
@@ -22,7 +22,7 @@ namespace Club_des_fromages.metier
         }
 
         public int Id { get => id; set => id = value; }
-        public string Pays_origine_id { get => pays_origine_id; set => pays_origine_id = value; }
+        public int Pays_origine_id { get => pays_origine_id; set => pays_origine_id = value; }
         public string Nom { get => nom; set => nom = value; }
         public int Creation { get => creation; set => creation = value; }
         public string Image { get => image; set => image = value; }
