@@ -6,11 +6,11 @@ namespace Club_des_fromages.metier
 {
     class Fromage
     {
-        protected int id;
-        protected int pays_origine_id;
-        protected string nom;
-        protected int creation;
-        protected string image;
+        private int id;
+        private int pays_origine_id;
+        private string nom;
+        private int creation;
+        private string image;
 
         public Fromage(int id, int pays_origine_id, string nom, int creation, string image)
         {

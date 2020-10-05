@@ -6,8 +6,8 @@ namespace Club_des_fromages.metier
 {
     class Pays
     {
-        protected int id;
-        protected string nom;
+        private int id;
+        private string nom;
 
         public Pays(int id, string nom)
         {

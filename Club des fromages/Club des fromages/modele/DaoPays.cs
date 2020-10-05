@@ -39,9 +39,9 @@ namespace Club_des_fromages.modele
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                var record = new ibf_Pays() ;
+                csv.Configuration.PrepareHeaderForMatch = (nom, id) => nom.ToLower();
+                    var record = new ibf_Pays() ;
                 var records = csv.EnumerateRecords(record);
-                csv.Configuration.PrepareHeaderForMatch = (Nom, Id) => Nom.ToLower();
                 foreach (var e in records)
                 {
                     mydbal.Insert("Pays VALUES (" + e.Id + ", '" + e.Nom + "'");
