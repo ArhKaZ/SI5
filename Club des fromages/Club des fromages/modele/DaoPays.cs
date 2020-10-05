@@ -7,12 +7,13 @@ using System.Globalization;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using Ubiety.Dns.Core;
 
 namespace Club_des_fromages.modele
 {
     class DaoPays 
     {
-        private dbal mydbal = new dbal();
+        private dbal mydbal;
         public DaoPays(dbal undbal)
         {
             this.mydbal = undbal;
@@ -23,9 +24,9 @@ namespace Club_des_fromages.modele
             mydbal.Insert("Pays (id, nom) VALUES (" + unPays.Id + ", '" + unPays.Nom + "'");
         }
 
-        public void UpdatePays(Pays unPays, string valeurAchange, string newValue)
+        public void UpdatePays(Pays unPays)
         {
-            mydbal.Update("Fromage SET" + valeurAchange + " = '" + newValue + "' where id ='" + unPays.Id + "'");
+            mydbal.Update("Pays SET id = '" + unPays.Id + "', nom ='" + unPays.Nom + "'");
         }
 
         public void DeletePays(Pays unPays)
@@ -38,8 +39,13 @@ namespace Club_des_fromages.modele
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                List<Pays> records = new List<Pays>();
-                records = csv.GetRecords<Pays>;
+                var record = new ibf_Pays() ;
+                var records = csv.EnumerateRecords(record);
+                csv.Configuration.PrepareHeaderForMatch = (Nom, Id) => Nom.ToLower();
+                foreach (var e in records)
+                {
+                    mydbal.Insert("Pays VALUES (" + e.Id + ", '" + e.Nom + "'");
+                }
             }
         }
     }

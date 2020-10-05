@@ -49,3 +49,5 @@ D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.dll
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.pdb
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.genruntimeconfig.cache
+D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.csproj.CoreCompileInputs.cache
+D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3.1\CsvHelper.dll
