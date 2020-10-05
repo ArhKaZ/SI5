@@ -46,7 +46,6 @@ D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3.1\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3.1\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\bin\Debug\netcoreapp3.1\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.csproj.CoreCompileInputs.cache
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.dll
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.pdb
 D:\SylvainLuiset\SLAM5\Club des fromages\Club des fromages\obj\Debug\netcoreapp3.1\Club des fromages.genruntimeconfig.cache

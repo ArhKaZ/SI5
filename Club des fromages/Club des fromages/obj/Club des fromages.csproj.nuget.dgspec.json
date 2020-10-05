@@ -43,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[15.0.6, )"
+            },
             "Extended.Wpf.Toolkit": {
               "target": "Package",
               "version": "[4.0.1, )"

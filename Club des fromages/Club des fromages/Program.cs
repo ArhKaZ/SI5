@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Club_des_fromages.metier;
 using Club_des_fromages.modele;
 using MySql.Data.MySqlClient;
 using Xceed.Wpf.Toolkit;
@@ -22,8 +23,18 @@ namespace Club_des_fromages
             mydbal.Count("(*) FROM Pays");
             mydbal.Delete("Pays WHERE id = '2'");
 
+            //InsertPays par DAO
             Pays ar = new Pays(5, "Suisse");
-            ar.InsertPays(ar);
+            DaoPays Suisse = new DaoPays(mydbal);
+            Suisse.InsertPays(ar);
+
+            //UpdatePays par DAO
+            Suisse.UpdatePays(ar, "nom", "Jordanie");
+
+            //DeletePays par DAO
+            Suisse.DeletePays(ar);
+
+
 
         }
     }

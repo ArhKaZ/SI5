@@ -6,25 +6,27 @@ using System.Text;
 
 namespace Club_des_fromages.modele
 {
-    class DaoFromage : Fromage
+    class DaoFromage
     {
-
-        public void InsertFromage(DaoFromage unFromage)
+        private dbal mydbal = new dbal();
+        public DaoFromage(dbal mydbal)
         {
-            dbal mydbal = new dbal();
-            mydbal.Insert("Fromage VALUES (" + unFromage.id + ", " + unFromage.pays_origine_id + ", '" + unFromage.nom + "' , " + unFromage.creation + "," + unFromage.Image);
+            this.mydbal = mydbal;     
         }
 
-        public void UpdateFromage(DaoFromage unFromage,string valeurAchange, string newValue)
+        public void InsertFromage(Fromage unFromage)
         {
-            dbal mydbal = new dbal();
-            mydbal.Update("Fromage SET" + valeurAchange + " = '" + newValue + "' where id ='" + unFromage.id + "'");
+            mydbal.Insert("Fromage VALUES (" + unFromage.Id + ", " + unFromage.Pays_origine_id + ", '" + unFromage.Nom + "' , " + unFromage.Creation + "," + unFromage.Image);
         }
 
-        public void DeleteFromage(DaoFromage unFromage)
+        public void UpdateFromage(Fromage unFromage,string valeurAchange, string newValue)
         {
-            dbal mydbal = new dbal();
-            mydbal.Delete("Fromage WHERE id = '" + unFromage.id + "'");
+            mydbal.Update("Fromage SET" + valeurAchange + " = '" + newValue + "' where id ='" + unFromage.Id + "'");
+        }
+
+        public void DeleteFromage(Fromage unFromage)
+        {
+            mydbal.Delete("Fromage WHERE id = '" + unFromage.Id + "'");
         }
     }
 }

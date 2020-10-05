@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Club_des_fromages.metier
 {
-    class DTO_pays
+    class Pays
     {
-        private int id;
-        private string nom;
+        protected int id;
+        protected string nom;
 
-        public DTO_pays(int id, string nom)
+        public Pays(int id, string nom)
         {
             this.id = id;
             this.nom = nom;
