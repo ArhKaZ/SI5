@@ -21,6 +21,10 @@ namespace Club_des_fromages
             mydbal.Select("* FROM Pays");
             mydbal.Count("(*) FROM Pays");
             mydbal.Delete("Pays WHERE id = '2'");
+
+            Pays ar = new Pays(5, "Suisse");
+            ar.InsertPays(ar);
+
         }
     }
 }
