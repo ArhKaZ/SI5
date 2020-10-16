@@ -6,16 +6,21 @@ namespace Club_des_fromages.metier
 {
     class Pays
     {
-        private int id;
-        private string nom;
+        private int _id;
+        private string _nom;
 
+        public Pays()
+        {
+            _id = 0;
+            _nom = "";
+        }
         public Pays(int id, string nom)
         {
-            this.id = id;
-            this.nom = nom;
+            _id = id;
+            _nom = nom;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Nom { get => nom; set => nom = value; }
+        public int Id { get => _id; set => _id = value; }
+        public string Nom { get => _nom; set => _nom = value; }
     }
 }

@@ -3,10 +3,12 @@ using CsvHelper;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Threading.Tasks;
 using Ubiety.Dns.Core;
 
 namespace Club_des_fromages.modele
@@ -16,37 +18,66 @@ namespace Club_des_fromages.modele
         private dbal mydbal;
         public DaoPays(dbal undbal)
         {
-            this.mydbal = undbal;
+            mydbal = undbal;
         }
 
         public void InsertPays(Pays unPays)
         {
-            mydbal.Insert("Pays (id, nom) VALUES (" + unPays.Id + ", '" + unPays.Nom + "'");
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values["id"] = unPays.Id.ToString();
+            values["nom"] = "'" + unPays.Nom.Replace("'", "\\'") + "'";
+            mydbal.Insert("pays", values);
         }
 
         public void UpdatePays(Pays unPays)
         {
-            mydbal.Update("Pays SET id = '" + unPays.Id + "', nom ='" + unPays.Nom + "'");
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values["Nom"] = "'" + unPays.Nom.Replace("'", "\\'") + "'";
+            mydbal.Update("pays", values, "Id = " + unPays.Id);
         }
 
         public void DeletePays(Pays unPays)
         {
-            mydbal.Delete("Fromage WHERE id = '" + unPays.Id + "'");
+            mydbal.Delete("pays", "Id = " + unPays.Id);
         }
 
-        public void InsertByFile(string path)
+        public void insertfile(string path, string delimiter)
         {
-            using (var reader = new StreamReader(path))
+            using (var reader = new StreamReader("pays.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                csv.Configuration.PrepareHeaderForMatch = (nom, id) => nom.ToLower();
-                    var record = new ibf_Pays() ;
+                csv.Configuration.Delimiter = delimiter;
+                csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToLower();
+                
+                Pays record = new Pays();
                 var records = csv.EnumerateRecords(record);
-                foreach (var e in records)
+                foreach (Pays r in records)
                 {
-                    mydbal.Insert("Pays VALUES (" + e.Id + ", '" + e.Nom + "'");
+                    this.InsertPays(r);
                 }
             }
         }
+
+        public List<Pays> SelectAll()
+        {
+            List<Pays> lesPays = new List<Pays>();
+            foreach (DataRow dr in mydbal.SelectAll("Pays").Rows)
+            {
+                lesPays.Add(new Pays((int)dr["id"], (string)dr["nom"]));
+            }
+            return lesPays;
+        }
+        public Pays SelectByName(string nom)
+        {
+            DataRow dr = mydbal.SelectByfield("Pays", "nom like '" + nom + "'").Rows[0];
+            return new Pays((int)dr["id"], (string)dr["nom"]);
+        }
+        
+        public Pays SelectById(int id)
+        {
+            DataRow dr = mydbal.DataRowSelectById("Pays", id);
+            return new Pays((int)dr["id"], (string)dr["nom"]);
+        }
+
     }
 }

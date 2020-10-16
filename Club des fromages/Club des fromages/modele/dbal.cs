@@ -5,6 +5,8 @@ using System.Data.Common;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.Data;
+using System.Linq;
 
 namespace Club_des_fromages.modele
 {
@@ -88,28 +90,52 @@ namespace Club_des_fromages.modele
         }
 
         //Insert statement 
-        public void Insert(string query)
+        public void Insert(string table, Dictionary<string, string> values)
         {
-            string insert = "INSERT INTO " + query;
+            string insert = "INSERT INTO " + table + " Values (";
+            foreach (var val in values)
+            {
+                insert += val.Value + ",";
+            }
+            insert = insert.Substring(0, insert.Length - 1); //Enlève la dernière virgule 
+            insert += ")";
+            Console.WriteLine(insert);
             //open connection 
             if (this.OpenConnection() == true)
             {
                 //créer la commande et assigne la requête et la connection au constructeur
                 MySqlCommand cmd = new MySqlCommand(insert, connection);
 
-                //Executer la commande
-                cmd.ExecuteNonQuery();
+                try
+                {
 
-                //Fermer la connection 
-                this.CloseConnection();
+
+                    //Executer la commande
+                    cmd.ExecuteNonQuery();
+
+                    //Fermer la connection 
+                    this.CloseConnection();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw;
+                }
             }
         }
 
         //Update statement
-        public void Update(string query)
+        public void Update(string table, Dictionary<string, string> values, string where)
         {
-            string update = "UPDATE " + query;
+            string update = "UPDATE " + table + "SET";
+            foreach (var val in values)
+            {
+                update += val.Key + "=" + val.Value + ",";
+            }
+            update = update.Substring(0, update.Length - 1);
+            update += " Where " + where;
 
+            System.Console.WriteLine(update);
             //open connection 
             if (this.OpenConnection() == true)
             {
@@ -129,9 +155,9 @@ namespace Club_des_fromages.modele
         }
 
         //Delete statement
-        public void Delete(string query)
+        public void Delete(string table, string where)
         {
-            string delete = "DELETE FROM " + query;
+            string delete = "DELETE FROM " + table + " WHERE " + where;
 
             if (this.OpenConnection() == true)
             {
@@ -200,6 +226,38 @@ namespace Club_des_fromages.modele
             {
                 return Count;
             }
+        }
+
+        private DataSet SelectQuery(string query)
+        {
+            DataSet mydataset = new DataSet();
+            MySqlDataAdapter laquery = new MySqlDataAdapter(query, connection);
+            laquery.Fill(mydataset);
+            return mydataset;
+        }
+
+        private DataSet OtherQuery(string query)
+        {
+            DataSet mydataset = new DataSet();
+            MySqlDataAdapter laquery = new MySqlDataAdapter();
+            laquery.SelectCommand = new MySqlCommand(query, connection);
+            laquery.Fill(mydataset);
+            return mydataset;
+        }
+
+        public DataTable SelectAll(string table)
+        {
+            return this.SelectQuery("Select * From" + table).Tables[0];
+        }
+
+        public DataTable SelectByfield(string table, string fieldTestCondition)
+        {
+            return this.SelectQuery("select * from " + table + " where " + fieldTestCondition).Tables[0];
+        }
+
+        public DataRow DataRowSelectById(string table, int id)
+        {
+            return this.SelectQuery("select * from " + table + "where id = " + id).Tables[0].Rows[0];
         }
 
         //Backup

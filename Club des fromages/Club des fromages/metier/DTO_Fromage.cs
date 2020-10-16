@@ -6,25 +6,25 @@ namespace Club_des_fromages.metier
 {
     class Fromage
     {
-        private int id;
-        private int pays_origine_id;
-        private string nom;
-        private int creation;
-        private string image;
+        private int _id;
+        private Pays _pays_origine_id;
+        private string _nom;
+        private DateTime _creation;
+        private string _image;
 
-        public Fromage(int id, int pays_origine_id, string nom, int creation, string image)
+        public Fromage(int id, Pays pays_origine_id, string nom, DateTime creation, string image)
         {
-            this.id = id;
-            this.pays_origine_id = pays_origine_id;
-            this.nom = nom;
-            this.creation = creation;
-            this.image = image;
+            this._id = id;
+            this._pays_origine_id = pays_origine_id;
+            this._nom = nom;
+            this._creation = creation;
+            this._image = image;
         }
 
-        public int Id { get => id; set => id = value; }
-        public int Pays_origine_id { get => pays_origine_id; set => pays_origine_id = value; }
-        public string Nom { get => nom; set => nom = value; }
-        public int Creation { get => creation; set => creation = value; }
-        public string Image { get => image; set => image = value; }
+        public int Id { get => _id; set => _id = value; }
+        public Pays Pays_origine_id { get => _pays_origine_id; set => _pays_origine_id = value; }
+        public string Nom { get => _nom; set => _nom = value; }
+        public DateTime Creation { get => _creation; set => _creation = value; }
+        public string Image { get => _image; set => _image = value; }
     }
 }

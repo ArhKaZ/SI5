@@ -13,9 +13,9 @@ namespace Club_des_fromages
         {
             dbal mydbal = new dbal();
             DaoPays Suisse = new DaoPays(mydbal);
-            Suisse.InsertByFile("D:/SylvainLuiset/SLAM5/Club des fromages/Club des fromages/pays.csv");
+            Suisse.insertfile("D:/SylvainLuiset/SLAM5/Club des fromages/Club des fromages/bin/Debug/netcoreapp3.1/pays.csv", ";");
 
-            
+
             //mydbal.Delete("Pays WHERE id = '1'");
             //mydbal.Delete("Fromage WHERE id ='1'");
             //mydbal.Delete("Pays WHERE id='2'");
@@ -40,7 +40,7 @@ namespace Club_des_fromages
             //Suisse.DeletePays(ar);
 
             ////Utilisation CSV
-           
+
 
         }
     }
