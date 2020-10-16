@@ -20,6 +20,11 @@ namespace Club_des_fromages.metier
             this._creation = creation;
             this._image = image;
         }
+        public Fromage()
+        {
+            
+            
+        }
 
         public int Id { get => _id; set => _id = value; }
         public Pays Pays_origine_id { get => _pays_origine_id; set => _pays_origine_id = value; }
