@@ -55,7 +55,7 @@ namespace Club_des_fromages.modele
                 csv.Configuration.Delimiter = delimiter;
                 csv.Configuration.PrepareHeaderForMatch = (string header, int index) => header.ToLower();
 
-                Fromage record = new Fromage(); //??????????
+                Fromage record = new Fromage(); 
                 var records = csv.EnumerateRecords(record);
                 foreach (Fromage fr in records)
                 {
