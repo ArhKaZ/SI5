@@ -1,0 +1,9 @@
+D:\Dimitri DEFRESNE\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.deps.json
+D:\Dimitri DEFRESNE\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.dll
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.csprojAssemblyReference.cache
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.AssemblyInfoInputs.cache
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.AssemblyInfo.cs
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.csproj.CoreCompileInputs.cache
+D:\Dimitri DEFRESNE\ModelLayer\bin\Debug\netcoreapp3.1\ModelLayer.pdb
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.dll
+D:\Dimitri DEFRESNE\ModelLayer\obj\Debug\netcoreapp3.1\ModelLayer.pdb
