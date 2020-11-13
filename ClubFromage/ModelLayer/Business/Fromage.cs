@@ -10,8 +10,8 @@ namespace ModelLayer.Business
     {
         private int id;
         private string name;
-        private DateTime creation;
         private Pays origin;
+        private DateTime creation;
         private string image;
 
         public int Id { get => id; set => id = value; }

@@ -28,10 +28,10 @@ namespace ModelLayer.Data
 
         public void Insert(Fromage theFromage)
         {
-            string query = "fromage (id, pays_origine_id, name, creation, image) VALUES ("
-                + theFromage.Id + ","
-                + theFromage.Origin.Id + ",'"
-                + theFromage.Name.Replace("'", "''") + "','"
+            string query = "Fromage (id,name,origin, creation , image) VALUES ("
+                + theFromage.Id + ",'"
+                + theFromage.Name.Replace("'", "''") + "',"
+                + theFromage.Origin.Id + ",'" 
                 + theFromage.Creation.ToString("yyyy-MM-dd") + "','"
                 + theFromage.Image + "')";
             this.thedbal.Insert(query);
