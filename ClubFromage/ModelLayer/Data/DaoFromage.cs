@@ -75,7 +75,7 @@ namespace ModelLayer.Data
 
             foreach (DataRow r in myTable.Rows)
             {
-                Pays myPays = this.theDaoPays.SelectById((int)r["pays_origine_id"]);
+                Pays myPays = this.theDaoPays.SelectById((int)r["origin"]);
                 listFromage.Add(new Fromage((int)r["id"], (string)r["name"], (DateTime)r["creation"], myPays, (string)r["image"]));
             }
 
