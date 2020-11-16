@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Data;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,54 +21,91 @@ namespace WpfClubFromage.viewModel
         private ICommand updateCommand;
         private ObservableCollection<Pays> listPays;
         private ObservableCollection<Fromage> listFromages;
-        private Fromage monFromage = new Fromage(1,"Rebloch");
+        private Fromage selectedFromage = new Fromage();
+        private Fromage activFromage = new Fromage();
 
         //déclaration des listes...à compléter avec les fromages
         public ObservableCollection<Pays> ListPays { get => listPays; set => listPays = value; }
         public ObservableCollection<Fromage> ListFromages { get => listFromages; set => listFromages = value; }
         //déclaration des propriétés avec OnPropertyChanged("nom_propriété_bindée")
-        //par exemple...
-        public string Name
+
+        public Fromage SelectedFromage
         {
-            get => monFromage.Name;
+            get => selectedFromage;
             set
             {
-                if (monFromage.Name != value)
+                if (selectedFromage != value)
                 {
-                    monFromage.Name = value;
+                    selectedFromage = value;
+                    OnPropertyChanged("SelectedFromage");
+                    if (selectedFromage != null)
+                    {
+                        ActivFromage = selectedFromage;
+                    }
+                }
+            }
+        }
+
+        public Fromage ActivFromage
+        {
+            get => activFromage;
+            set
+            {
+                if (activFromage != value)
+                {
+                    activFromage = value;
+                    OnPropertyChanged("Name");
+                    OnPropertyChanged("Origin");
+                    OnPropertyChanged("Creation");
+                }
+            }
+        }
+
+
+        public string Name
+        {
+            get => activFromage.Name;
+            set
+            {
+                if (activFromage.Name != value)
+                {
+                    activFromage.Name = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Name");
                 }
             }
         }
 
-        public Pays lePays
+        public DateTime Creation
         {
-            get => monFromage.Origin;
+            get => activFromage.Creation;
             set
             {
-                if (monFromage.Origin != value)
+                if (activFromage.Creation != value)
                 {
-                    monFromage.Origin = value;
-                    OnPropertyChanged("Origin");
-                }
-            }
-        }
-
-
-    public DateTime Creation
-        {
-            get => monFromage.Creation;
-            set
-            {
-                if (monFromage.Creation != value)
-                {
-                    monFromage.Creation = value;
+                    activFromage.Creation = value;
+                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Creation");
                 }
             }
         }
+        public Pays Origin
+        {
+            get => activFromage.Origin;
+            set
+            {
+                if (activFromage.Origin != value)
+                {
+                    activFromage.Origin = value;
 
+                     OnPropertyChanged("Origin");
+                        
+                    
+                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
+                    
+                }
+            }
+        }
         //déclaration du contructeur de viewModelFromage
         public viewModelFromage(DaoPays thedaopays, DaoFromage thedaofromage)
         {
@@ -77,9 +116,19 @@ namespace WpfClubFromage.viewModel
             listPays = new ObservableCollection<Pays>(thedaopays.SelectAll());
 
             listFromages = new ObservableCollection<Fromage>(thedaofromage.SelectAll());
+            foreach (Fromage f in listFromages)
+            {
+                foreach (Pays p in listPays)
+                {
+                    if (f.Origin.Name == p.Name)
+                    {
+                        f.Origin = p;
+                    }
 
+                }
+
+            }
         }
-
         //Méthode appelée au click du bouton UpdateCommand
         public ICommand UpdateCommand
         {
@@ -97,8 +146,10 @@ namespace WpfClubFromage.viewModel
 
         private void UpdateFromage()
         {
-            
+           
             
         }
+         
+        
     }
 }
